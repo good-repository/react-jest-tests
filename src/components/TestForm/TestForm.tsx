@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function TestForm() {
   const [techList, setTechList] = useState<string[] | []>([]);
   const [newTech, setNewTech] = useState<string>("");
+
+  useEffect(() => {
+    const storageTechs = localStorage.getItem("techList");
+
+    if (storageTechs) {
+      setTechList([JSON.parse(storageTechs)]);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("techList", JSON.stringify(techList));
+  }, [techList]);
 
   function handleAddTech() {
     setTechList([...techList, "Node.js"]);
