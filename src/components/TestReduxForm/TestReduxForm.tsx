@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { addTech } from "../../store/modules/techs/actions";
+
 function TestForm() {
   const [newTech, setNewTech] = useState<string>("");
 
@@ -10,16 +12,16 @@ function TestForm() {
   const techs = useSelector((state: any) => state.techs);
 
   function handleAddTech() {
-    dispatch({ type: "ADD_TECH", payload: { tech: newTech } });
+    dispatch(addTech(newTech));
     setNewTech("");
   }
 
   return (
     <form data-testid="tech-form" onSubmit={handleAddTech}>
       <ul data-testid="tech-list">
-        {(techs as any[]).map((tech) => (
-          <li key={tech}>{tech}</li>
-        ))}
+        {techs
+          ? (techs as any[]).map((tech) => <li key={tech}>{tech}</li>)
+          : null}
       </ul>
       <label htmlFor="tech">Tech</label>
       <input

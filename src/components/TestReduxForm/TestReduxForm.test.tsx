@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
-import { useSelector } from "react-redux";
+import { render, fireEvent } from "@testing-library/react";
+import { useSelector, useDispatch } from "react-redux";
+import { addTech } from "../../store/modules/techs/actions";
 import TestReduxForm from "./TestReduxForm";
 
 jest.mock("react-redux");
@@ -16,5 +17,19 @@ describe("TestReduxForm component", () => {
 
     expect(getByTestId("tech-list")).toContainElement(getByText("Node.js"));
     expect(getByTestId("tech-list")).toContainElement(getByText("React"));
+  });
+
+  it("shold be able to add new tech", () => {
+    const { getByTestId, getByLabelText } = render(<TestReduxForm />);
+
+    const dispatch = jest.fn();
+
+    // @ts-ignore: Unreachable code error
+    useDispatch.mockReturnValue(dispatch);
+
+    fireEvent.change(getByLabelText("Tech"), { target: { value: "Node.js" } });
+    fireEvent.submit(getByTestId("tech-form"));
+
+    expect(dispatch).toHaveBeenCalledWith(addTech("Node.js"));
   });
 });
