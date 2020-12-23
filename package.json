@@ -1,5 +1,11 @@
 {
   "name": "tests",
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/index.tsx",
+      "!src/reportWebVitals.ts"
+    ]
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,7 +32,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "react-scripts test -- --coverage",
+    "coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,6 +54,7 @@
     ]
   },
   "devDependencies": {
-    "axios-mock-adapter": "^1.19.0"
+    "axios-mock-adapter": "^1.19.0",
+    "ts-jest": "^26.4.4"
   }
 }

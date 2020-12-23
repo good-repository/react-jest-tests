@@ -8,7 +8,7 @@ interface payloadInterface {
 
 interface actionInterface {
   type: string;
-  payload: payloadInterface;
+  payload?: payloadInterface;
 }
 
 export default function techs(
