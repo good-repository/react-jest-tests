@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { addTech } from "../../store/modules/techs/actions";
+import { addTech } from "../../store/modules/techs/actions/actions";
 
 function TestForm() {
   const [newTech, setNewTech] = useState<string>("");

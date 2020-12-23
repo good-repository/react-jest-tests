@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTech } from "../../store/modules/techs/actions";
+import { addTech } from "../../store/modules/techs/actions/actions";
 import TestReduxForm from "./TestReduxForm";
 
 jest.mock("react-redux");
